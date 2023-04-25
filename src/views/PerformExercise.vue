@@ -34,31 +34,34 @@
     },
     mounted() {
       setupVideo();
-      startTimer();
+      this.startTimer();
     },
+    
     methods: {
       
       startTimer: function (){
-        console.log("timer started");
-        // setInterval(() => {
-        //   this.timer++;
-        //   console.log(this.timer);
-        //   let timer = this.timer;
-        //   if (timer < 60){
-        //     this.timerOutput = '00:' + timer;
-        //   } else {
-        //     let minutes = Math.floor(timer / 60);
-        //     let seconds = timer % 60;
-        //     if (minutes < 10)
-        //       minutes = '0' + minutes;
-        //     if (seconds < 10)
-        //       seconds = '0' + seconds;
-        //     this.timerOutput = minutes + ':' + seconds;
-        //   }
-        // }, 1000);
+        setInterval(() => {
+          this.timer++;
+          let timer = this.timer;
+          if (timer < 60){
+            if (timer < 10)
+              timer = '0' + timer;
+            this.timerOutput = '00:' + timer;
+          } else {
+            let minutes = Math.floor(timer / 60);
+            let seconds = timer % 60;
+            if (minutes < 10)
+              minutes = '0' + minutes;
+            if (seconds < 10)
+              seconds = '0' + seconds;
+            this.timerOutput = minutes + ':' + seconds;
+          }
+        }, 1000);
       }
 
-    }
+    },
+
+    
   }
 
   
