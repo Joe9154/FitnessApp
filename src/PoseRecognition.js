@@ -165,6 +165,7 @@ const exercises = {
         let angleInDegrees = calculateAngleBetween3PointsInDegrees(x1, y1, x2, y2, x3, y3);
         if (angleInDegrees > 160 && !flip) {
             repCounter++;
+            updateCounter();
             flip = !flip;
         }
         if (angleInDegrees < 110 && flip) {
@@ -183,6 +184,7 @@ const exercises = {
         let distanceBetweenTwoPoints = Math.sqrt(a * a + b * b);
         if (distanceBetweenTwoPoints < 100 && !flip) {
             repCounter++;
+            updateCounter();
             flip = !flip;
         }
         if (distanceBetweenTwoPoints > 150 && flip) {
