@@ -52,10 +52,6 @@ video, canvas {
   height: auto !important;
 }
 
-.video-box {
-  /* height: 60vh; */
-  max-height: 60vh;
-}
 
 .counter {
   font-size: 4.5rem;

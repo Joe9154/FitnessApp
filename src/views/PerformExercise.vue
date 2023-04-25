@@ -1,22 +1,28 @@
 <template>
-  <!-- Name of exercise and timer -->
-  <div class="row mt-2 p-3 fw-bold fs-3">
-    <div class="col-6">{{ $route.params.exerciseName }}</div>
-    <div class="col-6 text-end"> {{ timerOutput }}</div>
-  </div>
+  <div class="row">
+    <div class="col-xl-2"></div>
+    <div class="col-xl-8">
+      <!-- Name of exercise and timer -->
+      <div class="row mt-2 p-3 fw-bold fs-3">
+        <div class="col-6">{{ $route.params.exerciseName }}</div>
+        <div class="col-6 text-end"> {{ timerOutput }}</div>
+      </div>
 
-  <!-- Video -->
-  <div class="ms-3 me-3 video-box text-center">
-    <video v-show="false" id="video" class="rounded shadow" autoplay playsinline></video>
-    <canvas v-show="true" id="output" class="rounded shadow"></canvas>
-  </div>
-  <!-- Rep counter -->
-  <div class="text-center mt-3">
-    <span class="counter fw-bold" id="counter">0</span>
-  </div>
-  <!-- Form -->
-  <div class="mt-2" v-show="$route.params.exerciseName === 'Deadlift'">
-    <span class="fw-bold fs-3 ms-3" id="status">Form: ok!</span>
+      <!-- Video -->
+      <div class="ms-3 me-3 video-box text-center">
+        <video v-show="false" id="video" class="rounded shadow" autoplay playsinline></video>
+        <canvas v-show="true" id="output" class="rounded shadow"></canvas>
+      </div>
+      <!-- Rep counter -->
+      <div class="text-center mt-3">
+        <span class="counter fw-bold" id="counter">0</span>
+      </div>
+      <!-- Form -->
+      <div class="mt-2" v-show="$route.params.exerciseName === 'Deadlift'">
+        <span class="fw-bold fs-3 ms-3" id="status">Form: ok!</span>
+      </div>
+    </div>
+    <div class="col-xl-2"></div>
   </div>
 </template>
 
@@ -34,7 +40,7 @@ export default {
   mounted() {
     PoseRecognition.setupVideo();
     PoseRecognition.startPoseDetection(this.$route.params.exerciseName);
-    // this.startTimer();
+    this.startTimer();
 
   },
   beforeUnmount() {
