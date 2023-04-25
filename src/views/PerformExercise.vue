@@ -66,6 +66,9 @@ export default {
           this.timerOutput = minutes + ':' + seconds;
         }
       }, 1000);
+    },
+    doSomething: function () {
+      console.log('doSomething');
     }
 
   },
@@ -75,7 +78,7 @@ export default {
 
 let pose = null;
 let detector = null;
-let curlCounter = 0;
+let repCounter = 0;
 let flip = true;
 
 
@@ -124,7 +127,7 @@ async function startCanvas() {
 
       drawLandmarks();
       connectTheDots();
-      printStanceDeadlift();
+      printDeadlift();
 
     }).catch((err) => {
       console.log(err);
@@ -176,13 +179,13 @@ async function startCanvas() {
     let y3 = pose[0]["keypoints"][9].y;
     let angleInDegrees = calculateAngleBetween3PointsInDegrees(x1, y1, x2, y2, x3, y3);
     if (angleInDegrees > 160 && !flip) {
-      curlCounter++;
+      repCounter++;
       flip = !flip;
     }
     if (angleInDegrees < 110 && flip) {
       flip = !flip;
     }
-    let output = "Pushups: " + curlCounter + " - Angle: " + angleInDegrees + "*";
+    let output = "Pushups: " + repCounter + " - Angle: " + angleInDegrees + "*";
     console.log("%c " + output, "font-size: 20px");
   }
 
@@ -195,13 +198,13 @@ async function startCanvas() {
     let b = y1 - y2;
     let distanceBetweenTwoPoints = Math.sqrt(a * a + b * b);
     if (distanceBetweenTwoPoints < 100 && !flip) {
-      curlCounter++;
+      repCounter++;
       flip = !flip;
     }
     if (distanceBetweenTwoPoints > 150 && flip) {
       flip = !flip;
     }
-    let output = "Squats: " + curlCounter + " - " + distanceBetweenTwoPoints + "px";
+    let output = "Squats: " + repCounter + " - " + distanceBetweenTwoPoints + "px";
     console.log("%c " + output, "font-size: 20px");
   }
 
@@ -214,14 +217,15 @@ async function startCanvas() {
     let b = y1 - y2;
     let distanceBetweenTwoPoints = Math.sqrt(a * a + b * b);
     if (distanceBetweenTwoPoints < 50 && !flip) {
-      curlCounter++;
+      repCounter++;
       flip = !flip;
     }
     if (distanceBetweenTwoPoints > 90 && flip) {
       flip = !flip;
     }
-    let output = "deadlifts: " + curlCounter + " - " + distanceBetweenTwoPoints + "px";
-    console.log("%c " + output, "font-size: 20px");
+    let output = "deadlifts: " + repCounter + " - " + distanceBetweenTwoPoints + "px";
+    // console.log("%c " + output, "font-size: 20px");
+    this.doSomething();
   }
 
   function drawLandmarks() {
