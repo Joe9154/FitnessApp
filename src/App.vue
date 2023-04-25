@@ -40,7 +40,7 @@ body {
 }
 
 .spacer {
-  height: 6.5rem;
+  height: 8rem;
 }
 
 .arrow {
