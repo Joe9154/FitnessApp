@@ -1,4 +1,10 @@
-# diplomska
+# Fitness App
+
+- TODO: write readme
+
+## Technologies:
+- Frontend: Vue3, HTML, CSS, JS, Bootstrap
+- Pose detection: [MoveNet](https://blog.tensorflow.org/2021/05/next-generation-pose-detection-with-movenet-and-tensorflowjs.html) (tensorflow)
 
 ## Project setup
 ```
