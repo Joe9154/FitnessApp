@@ -4,7 +4,7 @@
             <img :src="arrowImage" class="arrow position-absolute mt-1 ms-5 start-0">
         </router-link>
         <router-link to="/">
-            <h2 class="fw-bold">FITNESS APP</h2>
+            <h2 class="fw-bold">FITNESS APP2</h2>
         </router-link>
     </div>
 </template>
