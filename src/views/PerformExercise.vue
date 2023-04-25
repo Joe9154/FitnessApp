@@ -10,16 +10,20 @@
 
       <!-- Video -->
       <div class="ms-3 me-3 video-box text-center">
+        <div id="loader">
+          <div class="spinner-border mt-5" role="status"></div>
+          <div class="mt-2 mb-5">Loading...</div>
+        </div>
         <video v-show="false" id="video" class="rounded shadow" autoplay playsinline></video>
-        <canvas v-show="true" id="output" class="rounded shadow"></canvas>
+        <canvas v-show="false" id="output" class="rounded shadow"></canvas>
       </div>
       <!-- Rep counter -->
       <div class="text-center mt-3">
-        <span class="counter fw-bold" id="counter">0</span>
+        <span class="counter fw-bold" v-show="false" id="counter">0</span>
       </div>
       <!-- Form -->
       <div class="mt-2" v-show="$route.params.exerciseName === 'Deadlift'">
-        <span class="fw-bold fs-3 ms-3" id="status">Form: ok!</span>
+        <span class="fw-bold fs-3 ms-3" v-show="false" id="status">Form: ok!</span>
       </div>
     </div>
     <div class="col-xl-2"></div>
@@ -38,9 +42,11 @@ export default {
     }
   },
   mounted() {
-    PoseRecognition.setupVideo();
-    PoseRecognition.startPoseDetection(this.$route.params.exerciseName);
-    this.startTimer();
+    PoseRecognition.setupVideo()
+    PoseRecognition.startPoseDetection(this.$route.params.exerciseName)
+    .then(() => {
+      this.startTimer()
+    })
 
   },
   beforeUnmount() {

@@ -10,7 +10,7 @@ let video;
 let canvas;
 let ctx;
 
-function startPoseDetection(exerciseName) {
+async function startPoseDetection(exerciseName) {
     console.log("exercise:" + exerciseName);
     pose = null;
     detector = null;
@@ -29,7 +29,13 @@ function startPoseDetection(exerciseName) {
         ctx.fillStyle = 'red';
 
         startDetector()
-            .then(() => requestAnimationFrame(drawCanvas));
+            .then(() => requestAnimationFrame(drawCanvas))
+            .then(() => {
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("output").style.display = "block";
+                document.getElementById("counter").style.display = "block";
+                document.getElementById("status").style.display = "block";
+            });
     };
 }
 
